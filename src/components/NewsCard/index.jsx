@@ -28,47 +28,62 @@ export default function NewsCard({ news }) {
       </div>
 
       <div className="news-body">
-        {/* Fecha y hora de publicación */}
-        <time className="news-date" dateTime={news.pubDate}>
-          {formattedDate}
-        </time>
+        {/* Generar un ID único basado en el título o guid */}
+        {(() => {
+          const newsId = news.guid 
+            ? news.guid.replace(/[^a-zA-Z0-9]/g, "") 
+            : news.title.replace(/[^a-zA-Z0-9]/g, "").substring(0, 15);
+          
+          return (
+            <>
+              {/* Fecha y hora de publicación */}
+              <time className="news-date" dateTime={news.pubDate} id={`news-date-${newsId}`}>
+                {formattedDate}
+              </time>
 
-        {/* Título de la noticia */}
-        <h3 className="news-heading">
-          <a
-            href={news.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="news-title-link"
-            title={`Leer: ${news.title}`}
-          >
-            {news.title}
-          </a>
-        </h3>
+              {/* Título de la noticia */}
+              <h3 className="news-heading" id={`news-title-${newsId}`}>
+                <a
+                  href={news.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="news-title-link"
+                  tabIndex="-1"
+                  title={`Leer: ${news.title}`}
+                >
+                  {news.title}
+                </a>
+              </h3>
 
-        <div className="news-footer-actions">
-          {/* Botón de acción principal */}
-          <a
-            href={news.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="news-read-more-btn"
-          >
-            Leer artículo completo
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="news-btn-icon"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
-        </div>
+              <div className="news-footer-actions">
+                {/* Botón de acción principal */}
+                <a
+                  href={news.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="news-read-more-btn"
+                  aria-label="Artículo"
+                  aria-describedby={`news-title-${newsId} news-date-${newsId} news-btn-text-${newsId}`}
+                >
+                  <span id={`news-btn-text-${newsId}`}>Leer artículo completo</span>
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="news-btn-icon"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </>
+          );
+        })()}
+      </div>
 
         {/* Sección interactiva de cobertura relacionada */}
         {hasRelated && (
@@ -122,7 +137,6 @@ export default function NewsCard({ news }) {
             </div>
           </div>
         )}
-      </div>
     </article>
   );
 }

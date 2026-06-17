@@ -5,11 +5,11 @@ export default function StandingsTable({ standings }) {
     <div
       className="table-responsive-wrapper"
       role="region"
-      aria-label="Tabla del torneo"
+      aria-labelledby="table-caption"
       tabIndex="0"
     >
       <table className="standings-table">
-        <caption className="sr-only">
+        <caption id="table-caption" className="sr-only">
           Posiciones actuales de los equipos en la liga
         </caption>
         <thead>
@@ -69,17 +69,16 @@ export default function StandingsTable({ standings }) {
             const isPumas = row.idTeam === "134201";
             const goalDiff = parseInt(row.intGoalDifference, 10);
             return (
-              <tr
-                key={row.idTeam}
-                className={isPumas ? "highlight-team" : ""}
-                aria-label={isPumas ? "Pumas UNAM, tu equipo" : null}
-              >
+              <tr key={row.idTeam} className={isPumas ? "highlight-team" : ""}>
                 <td className="col-rank">
                   <strong>{row.intRank}</strong>
                 </td>
                 <td className="col-team">
                   <div className="team-info">
-                    <span className="team-name">{row.strTeam}</span>
+                    <span className="team-name">
+                      {row.strTeam}
+                      {isPumas && <span className="sr-only"> (Tu equipo)</span>}
+                    </span>
                   </div>
                 </td>
                 <td className="col-points">

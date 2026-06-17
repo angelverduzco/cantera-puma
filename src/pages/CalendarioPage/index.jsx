@@ -45,6 +45,12 @@ export default function CalendarioPage() {
     );
   }
 
+  // Encontrar el índice del primer partido futuro (el inmediato siguiente)
+  const firstFutureIndex = matches.findIndex((match) => {
+    const score = match.marcador || match.resultado || "";
+    return !(score !== "Próximo" && score.includes("-"));
+  });
+
   return (
     <main className="calendario-container">
       <section className="calendario-hero">
@@ -82,24 +88,28 @@ export default function CalendarioPage() {
               <article
                 key={index}
                 className={`match-card ${isFuture ? "future" : "past"}`}
-                aria-label={`Jornada ${match.jornada}: ${home} ${homeScore ? homeScore + " a" : "contra"} ${awayScore ? awayScore + " " : ""}${away}`}
+                role="group"
+                aria-label="Partido"
+                aria-describedby={`jornada-${index} fecha-${index} details-${index}`}
                 tabIndex="0"
               >
                 <header className="match-header">
-                  <span className="jornada">{match.jornada}</span>
+                  <span className="jornada" id={`jornada-${index}`}>
+                    {match.jornada}
+                  </span>
                   <span
                     className={`status-badge ${isFuture ? "future-badge" : "past-badge"}`}
                   >
                     {statusText}
                   </span>
                 </header>
-                <div className="match-date">
+                <div className="match-date" id={`fecha-${index}`}>
                   <time>
                     {matchDate}
                     {matchTime}
                   </time>
                 </div>
-                <div className="match-details">
+                <div className="match-details" id={`details-${index}`}>
                   <div className="team">
                     <span className="team-name">{home}</span>
                     {!isFuture && <span className="score">{homeScore}</span>}
@@ -110,7 +120,7 @@ export default function CalendarioPage() {
                     <span className="team-name">{away}</span>
                   </div>
                 </div>
-                {isFuture && (
+                {isFuture && index === firstFutureIndex && (
                   <div className="match-footer">
                     <span>Próximo Encuentro</span>
                   </div>
