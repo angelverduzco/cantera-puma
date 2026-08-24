@@ -4,6 +4,7 @@ import PlayerCard from "../../components/PlayerCard";
 import PlayerModal from "../../components/PlayerModal";
 import { useFutbolData } from "../../hooks/useFutbol";
 import LoadingState from "../../components/LoadingState";
+import useHead from "../../hooks/useHead";
 
 // Mapeo de posiciones de API-Sports a español
 const positionMap = {
@@ -14,6 +15,13 @@ const positionMap = {
 };
 
 export default function PlayersPage() {
+  useHead({
+    title: "Plantilla Oficial Pumas UNAM 2026",
+    description:
+      "Conoce la plantilla oficial del Club Universidad Nacional: jugadores, posiciones y fichas del primer equipo.",
+    path: "/plantilla",
+  });
+
   const { data, loading, error } = useFutbolData();
   const [filter, setFilter] = useState("Todos");
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -55,10 +63,46 @@ export default function PlayersPage() {
   if (error) {
     return (
       <main className="players-container">
-        <div className="error-state">
-          <h2>Hubo un error cargando los jugadores</h2>
-          <p>{error}</p>
-        </div>
+        <section className="players-hero">
+          <h2>Plantilla Oficial Pumas UNAM</h2>
+          <p>
+            Conoce a los jugadores que defienden nuestros colores esta temporada
+          </p>
+        </section>
+        <section
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "4rem 2rem",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "#122245",
+              background:
+                "linear-gradient(120deg, rgba(18, 34, 69, 1) 20%, rgba(187, 164, 90, 1) 100%)",
+              padding: "3rem",
+              borderRadius: "15px",
+              textAlign: "center",
+              width: "100%",
+              maxWidth: "800px",
+              boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
+            }}
+          >
+            <h3
+              style={{
+                color: "#bba45a",
+                fontSize: "2rem",
+                marginBottom: "1rem",
+              }}
+            >
+              ¡Aviso!
+            </h3>
+            <p style={{ color: "#e0e0e0", fontSize: "1.2rem", margin: 0 }}>
+              No se encontraron los datos.
+            </p>
+          </div>
+        </section>
       </main>
     );
   }

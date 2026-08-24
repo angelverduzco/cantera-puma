@@ -1,4 +1,5 @@
 import "./TrophiesPage.css";
+import useHead from "../../hooks/useHead";
 import ligamxTrophy from "../../assets/trofeos/ligamx.webp";
 import campeonDeCampeonesTrophy from "../../assets/trofeos/campeon_de_campeones.webp";
 import concacafTrophy from "../../assets/trofeos/concachampions.webp";
@@ -69,6 +70,13 @@ const trophies = [
 ];
 
 export default function TrophiesPage() {
+  useHead({
+    title: "Trofeos de Pumas UNAM — Palmarés Completo",
+    description:
+      "Explora el palmarés completo de Pumas UNAM: ligas, copas y campeonatos ganados a lo largo de su historia.",
+    path: "/trofeos",
+  });
+
   return (
     <main className="trophies-container">
       <section className="hero-section">

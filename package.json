@@ -12,17 +12,12 @@
   },
   "dependencies": {
     "@justinribeiro/lite-youtube": "^1.9.0",
-    "@sparticuz/chromium": "^147.0.2",
-    "dotenv": "^17.4.2",
-    "puppeteer-core": "^24.42.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.9.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
-    "@types/react": "^19.1.16",
-    "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react-swc": "^4.1.0",
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
