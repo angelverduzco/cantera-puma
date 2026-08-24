@@ -4,7 +4,10 @@ import "./Header.css";
 export default function Header() {
   return (
     <header className="header">
-      <img src={headerImg} alt="" />
+      <img
+        src={headerImg}
+        alt="Logo de Cantera Puma, portal de aficionados Pumas UNAM"
+      />
       <h1>Cantera Puma</h1>
     </header>
   );

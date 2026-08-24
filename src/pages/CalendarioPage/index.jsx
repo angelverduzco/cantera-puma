@@ -1,8 +1,16 @@
 import "./CalendarioPage.css";
 import { useCalendario } from "../../hooks/useCalendario";
 import LoadingState from "../../components/LoadingState";
+import useHead from "../../hooks/useHead";
 
 export default function CalendarioPage() {
+  useHead({
+    title: "Calendario de Partidos Liga MX — Pumas UNAM",
+    description:
+      "Sigue el calendario de partidos de Pumas UNAM en la Liga MX: resultados, próximos encuentros y fechas.",
+    path: "/calendario",
+  });
+
   const { matches, loading, error } = useCalendario();
 
   if (loading) {
@@ -53,6 +61,29 @@ export default function CalendarioPage() {
 
   return (
     <main className="calendario-container">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Inicio",
+                item: "https://canterapuma.vercel.app/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Calendario",
+                item: "https://canterapuma.vercel.app/calendario",
+              },
+            ],
+          }),
+        }}
+      />
       <section className="calendario-hero">
         <h2>Calendario Clausura 2026</h2>
         <p>Sigue todos los resultados y próximos partidos de Pumas UNAM.</p>

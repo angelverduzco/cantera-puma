@@ -2,8 +2,16 @@ import "./StandingsPage.css";
 import { usePosiciones } from "../../hooks/usePosiciones";
 import StandingsTable from "../../components/StandingsTable";
 import LoadingState from "../../components/LoadingState";
+import useHead from "../../hooks/useHead";
 
 export default function StandingsPage() {
+  useHead({
+    title: "Tabla de Posiciones Liga MX — Pumas UNAM",
+    description:
+      "Consulta la tabla de posiciones actualizada del torneo Liga MX. Puntos, goles y clasificación de todos los equipos.",
+    path: "/posiciones",
+  });
+
   const { data, loading, error } = usePosiciones();
 
   if (loading) {

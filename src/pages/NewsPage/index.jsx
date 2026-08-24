@@ -3,8 +3,16 @@ import "./NewsPage.css";
 import NewsCard from "../../components/NewsCard";
 import { useNews } from "../../hooks/useNews";
 import LoadingState from "../../components/LoadingState";
+import useHead from "../../hooks/useHead";
 
 export default function NewsSection() {
+  useHead({
+    title: "Últimas Noticias de Pumas UNAM",
+    description:
+      "Entérate de las últimas novedades del Club Universidad Nacional: transferencias, resultados y más.",
+    path: "/noticias",
+  });
+
   const { news, loading, error } = useNews();
   const [visibleCount, setVisibleCount] = useState(6);
 
@@ -25,33 +33,40 @@ export default function NewsSection() {
           <p>Entérate de las últimas novedades del Club Universidad Nacional</p>
         </section>
 
-        <div className="news-error-container">
-          <div className="news-error-card">
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="news-error-icon"
+        <section
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "4rem 2rem",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "#122245",
+              background:
+                "linear-gradient(120deg, rgba(18, 34, 69, 1) 20%, rgba(187, 164, 90, 1) 100%)",
+              padding: "3rem",
+              borderRadius: "15px",
+              textAlign: "center",
+              width: "100%",
+              maxWidth: "800px",
+              boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
+            }}
+          >
+            <h3
+              style={{
+                color: "#bba45a",
+                fontSize: "2rem",
+                marginBottom: "1rem",
+              }}
             >
-              <path
-                fillRule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <h3>¡Vaya! Algo no salió como esperábamos</h3>
-            <p>
-              No pudimos cargar las noticias de Pumas en este momento. Por
-              favor, vuelve a intentarlo más tarde.
+              ¡Aviso!
+            </h3>
+            <p style={{ color: "#e0e0e0", fontSize: "1.2rem", margin: 0 }}>
+              No se encontraron los datos.
             </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="news-retry-btn"
-            >
-              Intentar de nuevo
-            </button>
           </div>
-        </div>
+        </section>
       </main>
     );
   }
