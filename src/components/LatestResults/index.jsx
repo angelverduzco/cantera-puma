@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import "./LatestResults.css";
 import { useCalendario } from "../../hooks/useCalendario";
 import LoadingState from "../../components/LoadingState";
@@ -108,6 +109,14 @@ const LatestResults = () => {
           );
         })}
       </div>
+
+      <Link
+        to="/calendario"
+        className="results-cta"
+        aria-label="Ver calendario completo de Pumas"
+      >
+        Ver calendario completo
+      </Link>
     </section>
   );
 };

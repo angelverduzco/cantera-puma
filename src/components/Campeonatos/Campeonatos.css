@@ -22,58 +22,186 @@
   border-radius: 2px;
 }
 
-.campeonatos-table-wrapper {
-  max-width: 1000px;
-  margin: 0 auto;
-  overflow-x: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  border-radius: 12px;
+/* Timeline */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 3rem;
+  max-width: 700px;
+  position: relative;
 }
 
-.campeonatos table {
-  width: 100%;
-  border-collapse: collapse;
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #bba45a, #041e42);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 56px;
+  padding-bottom: 2.5rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-node {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  background-color: #bba45a;
+  border: 3px solid #041e42;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 0 4px #fafafa;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover .timeline-node {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 4px #fafafa, 0 0 12px rgba(187, 164, 90, 0.5);
+}
+
+.timeline-card {
   background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #bba45a;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-card:hover {
+  transform: translateX(6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.timeline-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.timeline-trophy-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.timeline-item:hover .timeline-trophy-img {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.timeline-card-info {
   text-align: left;
 }
 
-.campeonatos thead {
+.timeline-card-info h3 {
+  font-size: 1.2rem;
+  color: #041e42;
+  margin: 0 0 0.3rem 0;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.trophy-badge {
+  display: inline-block;
   background-color: #041e42;
   color: #bba45a;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
-.campeonatos th {
-  padding: 1.2rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 1px;
+.trophy-badge strong {
+  font-size: 1.1rem;
+  margin-right: 0.2rem;
 }
 
-.campeonatos td {
-  padding: 1.2rem;
-  color: #444;
-  border-bottom: 1px solid #eee;
+.timeline-years {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.campeonatos tbody tr {
-  transition: background 0.2s;
-}
-
-.campeonatos tbody tr:hover {
-  background: #f8f9fa;
-}
-
-.campeonatos th[scope="row"] {
-  font-weight: bold;
+.year-pill {
+  background-color: #f0ece0;
   color: #041e42;
-  background-color: transparent;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+.timeline-item:hover .year-pill {
+  background-color: #bba45a;
+  color: #fff;
+}
+
+/* CTA Button */
+.cta-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #bba45a;
+  color: #041e42;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(187, 164, 90, 0.4);
+}
+
+.cta-button:hover,
+.cta-button:focus-visible {
+  background-color: #d1b868;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(187, 164, 90, 0.6);
+  outline: none;
+}
+
+/* Responsive */
 @media (min-width: 768px) {
   .campeonatos {
     padding: 5rem 2rem;
   }
+
   .campeonatos h2 {
     font-size: 3rem;
+  }
+
+  .timeline {
+    max-width: 800px;
+  }
+
+  .timeline-card {
+    padding: 2rem;
+  }
+
+  .timeline-trophy-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .timeline-card-info h3 {
+    font-size: 1.4rem;
   }
 }

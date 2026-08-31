@@ -1,8 +1,9 @@
 import Introduction from "../components/Introduction";
 import Estadio from "../components/Estadio";
 import Campeonatos from "../components/Campeonatos";
-import Form from "../components/Form";
+import FeaturedPlayers from "../components/FeaturedPlayers";
 import LatestResults from "../components/LatestResults";
+import FeaturedNews from "../components/FeaturedNews";
 import useHead from "../hooks/useHead";
 
 export default function HomePage() {
@@ -19,7 +20,8 @@ export default function HomePage() {
       <Campeonatos />
       <Estadio />
       <LatestResults />
-      <Form />
+      <FeaturedPlayers />
+      <FeaturedNews />
     </main>
   );
 }

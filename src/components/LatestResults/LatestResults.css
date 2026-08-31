@@ -134,3 +134,30 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* CTA Button */
+.results-cta {
+  display: block;
+  margin: 3rem auto 0;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #bba45a;
+  color: #041e42;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(187, 164, 90, 0.4);
+  width: fit-content;
+}
+
+.results-cta:hover,
+.results-cta:focus-visible {
+  background-color: #d1b868;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(187, 164, 90, 0.6);
+  outline: none;
+}
