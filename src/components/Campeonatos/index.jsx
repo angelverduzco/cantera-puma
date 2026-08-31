@@ -1,63 +1,76 @@
+import { Link } from "react-router";
+import ligamxTrophy from "../../assets/trofeos/ligamx.webp";
+import concacafTrophy from "../../assets/trofeos/concachampions.webp";
 import "./Campeonatos.css";
+
+const highlights = [
+  {
+    id: 1,
+    name: "Liga MX",
+    count: 7,
+    image: ligamxTrophy,
+    years: [
+      "1976-77",
+      "1980-81",
+      "1990-91",
+      "Clausura 2004",
+      "Apertura 2004",
+      "Clausura 2009",
+      "Clausura 2011",
+    ],
+  },
+  {
+    id: 2,
+    name: "Copa de Campeones de la Concacaf",
+    count: 3,
+    image: concacafTrophy,
+    years: ["1981", "1982", "1989"],
+  },
+];
 
 export default function Campeonatos() {
   return (
     <section className="campeonatos">
-      <h2>Mural de Títulos</h2>
-      <div
-        className="campeonatos-table-wrapper"
-        role="region"
-        aria-label="Tabla de Campeonatos de Liga"
-        tabIndex="0"
-      >
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Temporada</th>
-              <th scope="col">Entrenador</th>
-              <th scope="col">Final vs.</th>
-            </tr>
-          </thead>
+      <h2>Palmarés de Pumas UNAM</h2>
 
-          <tbody>
-            <tr>
-              <th scope="row">1976-1977</th>
-              <td>Jorge Marik</td>
-              <td>Leones Negros</td>
-            </tr>
-            <tr>
-              <th scope="row">1980-1981</th>
-              <td>Velibor Milutinović</td>
-              <td>Cruz Azul</td>
-            </tr>
-            <tr>
-              <th scope="row">1990-1991</th>
-              <td>Miguel Mejía Barón</td>
-              <td>América</td>
-            </tr>
-            <tr>
-              <th scope="row">Clausura 2004</th>
-              <td>Hugo Sánchez</td>
-              <td>Chivas</td>
-            </tr>
-            <tr>
-              <th scope="row">Apertura 2004</th>
-              <td>Hugo Sánchez</td>
-              <td>Monterrey</td>
-            </tr>
-            <tr>
-              <th scope="row">Clausura 2009</th>
-              <td>Ricardo Ferretti</td>
-              <td>Pachuca</td>
-            </tr>
-            <tr>
-              <th scope="row">Clausura 2011</th>
-              <td>Guillermo Vázquez</td>
-              <td>Morelia</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <ol className="timeline" role="list">
+        {highlights.map((trophy) => (
+          <li key={trophy.id} className="timeline-item" role="listitem">
+            <div className="timeline-node" aria-hidden="true" />
+            <div className="timeline-card">
+              <div className="timeline-card-header">
+                <img
+                  src={trophy.image}
+                  alt={`Trofeo de ${trophy.name}`}
+                  className="timeline-trophy-img"
+                  loading="lazy"
+                />
+                <div className="timeline-card-info">
+                  <h3>{trophy.name}</h3>
+                  <span className="trophy-badge">
+                    <strong>{trophy.count}</strong> títulos
+                  </span>
+                </div>
+              </div>
+              <div className="timeline-years">
+                {trophy.years.map((year, i) => (
+                  <span key={i} className="year-pill">
+                    {year}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <Link
+        to="/trofeos"
+        className="cta-button"
+        aria-label="Ver palmarés completo de trofeos de Pumas"
+      >
+        Ver todos los trofeos
+      </Link>
     </section>
   );
 }
