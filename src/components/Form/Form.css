@@ -50,7 +50,6 @@
   padding: 0 1rem;
   box-sizing: border-box;
   transition: border-color 0.2s, box-shadow 0.2s;
-  font-family: 'Montserrat', sans-serif;
 }
 
 .formulario input:focus {
@@ -72,7 +71,6 @@
   margin-top: 2.5rem;
   color: #041e42;
   transition: transform 0.2s, background-color 0.2s;
-  font-family: 'Montserrat', sans-serif;
 }
 
 .formulario button:hover, .formulario button:focus-visible {

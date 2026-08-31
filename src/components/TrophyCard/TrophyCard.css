@@ -3,6 +3,8 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 350px;
 }
 
 .trophy-card-inner {

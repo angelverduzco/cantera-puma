@@ -1,9 +1,18 @@
 import { Link } from "react-router";
+import heroImg from "../../assets/campeon.webp";
 import "./Introduction.css";
 
 export default function Introduction() {
   return (
     <section className="introduction">
+      <img
+        src={heroImg}
+        alt=""
+        className="hero-bg"
+        fetchPriority="high"
+        width="1920"
+        height="1080"
+      />
       <div className="hero-overlay"></div>
       <div className="hero-content">
         <h2>

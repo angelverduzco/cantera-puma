@@ -30,6 +30,8 @@ export default function Estadio() {
           src={estadioImg}
           alt="Fotografía del imponente Estadio Olímpico Universitario visto desde la cancha"
           loading="lazy"
+          width="800"
+          height="600"
         />
       </div>
     </section>

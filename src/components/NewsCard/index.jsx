@@ -21,7 +21,13 @@ export default function NewsCard({ news }) {
       {/* Cabecera visual premium con gradiente deportivo y marca de agua de Puma */}
       <div className="news-card-banner">
         <div className="news-banner-overlay"></div>
-        <img src={pumaLogo} alt="" className="news-banner-watermark" />
+        <img
+          src={pumaLogo}
+          alt=""
+          className="news-banner-watermark"
+          width="200"
+          height="196"
+        />
 
         {/* Badge del medio fuente */}
         <span className="news-source-badge">{news.source}</span>

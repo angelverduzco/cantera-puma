@@ -20,7 +20,6 @@
   background-image: url("../../assets/himno-estadio.webp");
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   color: #fff;
   padding: 8rem 1rem;
   display: flex;
@@ -74,7 +73,6 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
-  font-family: Montserrat, sans-serif;
   font-weight: bold;
 }
 

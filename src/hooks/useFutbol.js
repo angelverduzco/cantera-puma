@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { cachedFetch } from "./useFetchCache";
 
 export function useFutbolData() {
   const [data, setData] = useState(null);
@@ -6,25 +7,29 @@ export function useFutbolData() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch("/api/futbol");
+        const result = await cachedFetch("/api/futbol");
 
-        if (!response.ok) {
-          throw new Error("Error al obtener datos");
+        if (!controller.signal.aborted) {
+          setData(result);
         }
-
-        const result = await response.json();
-        setData(result);
       } catch (err) {
-        setError(err.message);
+        if (err.name !== "AbortError" && !controller.signal.aborted) {
+          setError(err.message);
+        }
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchData();
+    return () => controller.abort();
   }, []);
 
   return { data, loading, error };

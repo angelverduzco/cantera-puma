@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { cachedFetch } from "./useFetchCache";
 
 export function useNews() {
   const [news, setNews] = useState([]);
@@ -6,25 +7,29 @@ export function useNews() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchNews = async () => {
       try {
         setLoading(true);
-        const response = await fetch("/api/news");
+        const result = await cachedFetch("/api/news");
 
-        if (!response.ok) {
-          throw new Error("Error al obtener las noticias dinámicas");
+        if (!controller.signal.aborted) {
+          setNews(result);
         }
-
-        const result = await response.json();
-        setNews(result);
       } catch (err) {
-        setError(err.message);
+        if (err.name !== "AbortError" && !controller.signal.aborted) {
+          setError(err.message);
+        }
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchNews();
+    return () => controller.abort();
   }, []);
 
   return { news, loading, error };

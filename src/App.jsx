@@ -1,16 +1,18 @@
+import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
+import LoadingState from "./components/LoadingState";
 import { useModal } from "./ModalContext";
-import HomePage from "./pages/HomePage";
-import { Routes } from "react-router";
-import { Route } from "react-router";
-import TrophiesPage from "./pages/TrophiesPage";
-import PlayersPage from "./pages/PlayersPage";
-import NewsPage from "./pages/NewsPage";
-import StandingsPage from "./pages/StandingsPage";
-import CalendarioPage from "./pages/CalendarioPage";
+import { Routes, Route } from "react-router";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const TrophiesPage = lazy(() => import("./pages/TrophiesPage"));
+const PlayersPage = lazy(() => import("./pages/PlayersPage"));
+const NewsPage = lazy(() => import("./pages/NewsPage"));
+const StandingsPage = lazy(() => import("./pages/StandingsPage"));
+const CalendarioPage = lazy(() => import("./pages/CalendarioPage"));
 
 function App() {
   const { isOpen, message, closeModal } = useModal();
@@ -22,14 +24,16 @@ function App() {
       </Modal>
       <Header />
       <NavBar />
-      <Routes>
-        <Route index path="/" element={<HomePage />} />
-        <Route path="/trofeos" element={<TrophiesPage />} />
-        <Route path="/plantilla" element={<PlayersPage />} />
-        <Route path="/posiciones" element={<StandingsPage />} />
-        <Route path="/calendario" element={<CalendarioPage />} />
-        <Route path="/noticias" element={<NewsPage />} />
-      </Routes>
+      <Suspense fallback={<LoadingState />}>
+        <Routes>
+          <Route index path="/" element={<HomePage />} />
+          <Route path="/trofeos" element={<TrophiesPage />} />
+          <Route path="/plantilla" element={<PlayersPage />} />
+          <Route path="/posiciones" element={<StandingsPage />} />
+          <Route path="/calendario" element={<CalendarioPage />} />
+          <Route path="/noticias" element={<NewsPage />} />
+        </Routes>
+      </Suspense>
       <Footer />
     </>
   );

@@ -41,7 +41,7 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    
+
       <p className="disclaimer">
         Los nombres, logotipos, imágenes y demás elementos identificadores del
         Club Universidad Nacional (Pumas UNAM) y la UNAM son propiedad de sus

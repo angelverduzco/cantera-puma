@@ -13,6 +13,8 @@
   padding: 2rem 1rem;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  content-visibility: auto;
+  contain-intrinsic-size: 0 350px;
 }
 
 .player-card:hover {
